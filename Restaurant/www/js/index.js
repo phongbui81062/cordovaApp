@@ -121,7 +121,7 @@ function listRestaurantSuccess(tx, result) {
     var newList = "<ul data-role='listview' id='lv-restaurant-list'>";
 
     $.each(result.rows, function (i, item) {
-        newList += "<li class='ui-content'><a href='view_restaurant_detail.html'rel='external' data-details='" + JSON.stringify(item) + "'>" +
+        newList += "<li class='ui-content'><a href='#view_restaurant_detail' data-details='" + JSON.stringify(item) + "'>" +
             "    <h3 class='ui-li-heading'>" + item.restaurantName + "</h3>" +
             "    <p class='ui-li-desc'>Restaurant Type: " + item.restaurantType + "</p>" +
             "</a></li>";
@@ -139,8 +139,8 @@ $(document).on("vclick", "#view_restaurant #lv-restaurant-list li a", function()
 function listRestaurantDetail(restaurant) {
     // console.log(restaurant.restaurantName);
     console.log($("#info"));
-    // $("#info").empty();
-    // $("#info").append("<h1>" + restaurant.restaurantName + "</h1>");
+    $("#info").empty();
+    $("#info").append("<h1>" + restaurant.restaurantName + "</h1>");
     // $("#info").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
     // $("#info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
     // $("#info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
