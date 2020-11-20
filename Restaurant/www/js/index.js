@@ -116,12 +116,12 @@ function listRestaurant() {
 }
 
 function listRestaurantSuccess(tx, result) {
-    $("#view_restaurant #lv-account-list").empty();
+    $("#view_restaurant #lv-restaurant-list").empty();
 
     var newList = "<ul data-role='listview' id='lv-restaurant-list'>";
 
     $.each(result.rows, function (i, item) {
-        newList += "<li class='ui-content'><a href='view_restaurant_detail' data-details='" + JSON.stringify(item) + "'>" +
+        newList += "<li class='ui-content'><a href='view_restaurant_detail.html'rel='external' data-details='" + JSON.stringify(item) + "'>" +
             "    <h3 class='ui-li-heading'>" + item.restaurantName + "</h3>" +
             "    <p class='ui-li-desc'>Restaurant Type: " + item.restaurantType + "</p>" +
             "</a></li>";
@@ -132,25 +132,19 @@ function listRestaurantSuccess(tx, result) {
     $("#view_restaurant #lv-restaurant-list").append(newList).listview("refresh").trigger("create");
 }
 
-$(document).on("vclick", "#page-view-restaurant #lv-restaurant-list li a", function() {
+$(document).on("vclick", "#view_restaurant #lv-restaurant-list li a", function() {
     var restaurant = $(this).data("details");
-
     listRestaurantDetail(restaurant);
 });
 function listRestaurantDetail(restaurant) {
-    console.log(restaurant.Id)
-    // $("#view_restaurant_detail #info").empty();
-    // $("#page-view-account-detail #quote").empty();
-    // $("#page-view-account-detail #btn-add-quotes").empty();
-    //
-    // $("#page-view-account-detail #restaurantName").append("<h1>" + restaurant.restaurantName + "</h1>");
-    // $("#page-view-account-detail #restaurantType").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
-    // $("#page-view-account-detail #info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
-    // $("#page-view-account-detail #info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
-    // $("#page-view-account-detail #info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
-    // $("#page-view-account-detail #info").append("<p>Note: " + restaurant.Note + "</p>");
-    // $("#page-view-account-detail #info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
-
-
-    // viewQuote(account.Id);
+    // console.log(restaurant.restaurantName);
+    console.log($("#info"));
+    // $("#info").empty();
+    // $("#info").append("<h1>" + restaurant.restaurantName + "</h1>");
+    // $("#info").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
+    // $("#info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
+    // $("#info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
+    // $("#info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
+    // $("#info").append("<p>Note: " + restaurant.Note + "</p>");
+    // $("#info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
 }
