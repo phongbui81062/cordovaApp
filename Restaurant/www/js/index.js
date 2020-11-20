@@ -3,14 +3,17 @@ document.addEventListener("deviceready", onDeviceReady, false);
 var db = "";
 
 function restaurantDB(tx) {
-    tx.executeSql(`create table if not exists Restaurant(restaurantId integer primary key autoincrement,
-        restaurantName text not null,
-        restaurantType text not null,
-        visitDate text not null default current_timestamp,
-        mealPrice interger not null,
-        avgRating interger not null,
-        Note text,
-        reporterName text not null)`
+    tx.executeSql(`create table if not exists Restaurant
+                   (
+                       restaurantId   integer primary key autoincrement,
+                       restaurantName text     not null,
+                       restaurantType text     not null,
+                       visitDate      text     not null default current_timestamp,
+                       mealPrice      interger not null,
+                       avgRating      interger not null,
+                       Note           text,
+                       reporterName   text     not null
+                   )`
     );
 
 }
@@ -33,7 +36,7 @@ function onDeviceReady() {
 
 function insertRestaurant(restaurant) {
     db.transaction(function (tx) {
-        var query = `insert into Restaurent(restaurantName,
+        var query = `insert into Restaurant(restaurantName,
                                             restaurantType,
                                             visitDate,
                                             mealPrice,
@@ -41,26 +44,47 @@ function insertRestaurant(restaurant) {
                                             Note,
                                             reporterName) Value(?,?,?,?,?,?,?)`
         tx.executeSql(query, [restaurant.restaurantName,
-        restaurant.restaurantType,
-        restaurant.visitDate,
-        restaurant.mealPrice,
-        restaurant.avgRating,
-        restaurant.Note,
-        restaurant.reporterName], function () {
+            restaurant.restaurantType,
+            restaurant.visitDate,
+            restaurant.mealPrice,
+            restaurant.avgRating,
+            restaurant.Note,
+            restaurant.reporterName], function () {
             console.log("insert done");
-        }, transError)
+        }, errorCB)
     })
 }
 
 $("#frm-create-restaurant").submit(function (e) {
     e.preventDefault();
-    var restaurantName = $("#txt-restaurant-name").val();
-    var restaurantType = $("#txt-restaurant-type").val();
-    var visitDate = $("#datetime-visit-time").val();
-    var mealPrice = parseInt($("#txt-meal-price").val());
-    var avgRating = (parseInt($("#txt-service-rating").val()) + parseInt($("#txt-cleanliness-rating").val()) + parseInt($("#txt-food-rating").val())) / 3;
-    var Note = $("#txt-Notes").val();
-    var reporterName = $("txt-reporter").val();
+    let restaurantName = $("#txt-restaurant-name").val();
+    let restaurantType = $("#txt-restaurant-type").val();
+    let visitDate = $("#datetime-visit-time").val();
+    let mealPrice = parseInt($("#txt-meal-price").val());
+    let avgRating = (parseInt($("#txt-service-rating").val()) + parseInt($("#txt-cleanliness-rating").val()) + parseInt($("#txt-food-rating").val())) / 3;
+    let Note = $("#txt-Notes").val();
+    let reporterName = $("#txt-reporter").val();
+    $("#frm-confirm #name").text(restaurantName);
+    $("#frm-confirm #restaurantType").text(restaurantType);
+    $("#frm-confirm #time").text(visitDate);
+    $("#frm-confirm #mealPrice").text(mealPrice);
+    $("#frm-confirm #averageRate").text(avgRating);
+    $("#frm-confirm #note").text(Note);
+    $("#frm-confirm #reporter").text(reporterName);
+    $("#frm-confirm").popup("open");
+
+    // console.log(restaurant);
+    // return false;
+});
+$('#frm-confirm').submit(function (e) {
+    e.preventDefault();
+    let restaurantName = $("#txt-restaurant-name").val();
+    let restaurantType = $("#txt-restaurant-type").val();
+    let visitDate = $("#datetime-visit-time").val();
+    let mealPrice = parseInt($("#txt-meal-price").val());
+    let avgRating = (parseInt($("#txt-service-rating").val()) + parseInt($("#txt-cleanliness-rating").val()) + parseInt($("#txt-food-rating").val())) / 3;
+    let Note = $("#txt-Notes").val();
+    let reporterName = $("#txt-reporter").val();
     var restaurant = {
         "restaurantName": restaurantName,
         "restaurantType": restaurantType,
@@ -70,8 +94,11 @@ $("#frm-create-restaurant").submit(function (e) {
         "Note": Note,
         "reporterName": reporterName
     }
-    console.log(restaurant);
-    // return false;
-
-})
-
+    insertRestaurant(restaurant);
+    console.log("Done")
+    // $("#frm-confirm").popup("close");
+    // $("#frm-create-restaurant").trigger("reset");
+});
+$(document).on("vclick", "#btn-edit", function(){
+    $("#frm-confirm").popup("close");
+});

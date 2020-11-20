@@ -51,6 +51,42 @@
                 <input type="text" id="txt-reporter" placeholder="Name of the reporter" >
                 <input type="submit" value="Create Account" id="showConfirm">
             </form>
+            <form data-role="popup" id="frm-confirm">
+                <h2>Confirm Restaurant Information</h2>
+
+                <table>
+                    <tr>
+                        <td><strong>Restaurant Name:</strong></td>
+                        <td id="name"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restaurant Type:</strong></td>
+                        <td id="restaurantType"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visit Time:</strong></td>
+                        <td id="time"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Meal Per Person:</strong></td>
+                        <td id="mealPrice"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Rating:</strong></td>
+                        <td id="averageRate"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Notes:</strong></td>
+                        <td id="note"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reporter Name:</strong></td>
+                        <td id="reporter"></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Confirm">
+                <input type="button" value="Edit Information" id="btn-edit">
+            </form>
         </div>
         <div id="footer" data-role="footer" data-position="fixed">
             <nav data-role="navbar">
