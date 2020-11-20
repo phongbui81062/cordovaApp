@@ -25,7 +25,7 @@ function errorCB(err) {
 
 
 function successCB() {
-    alert("alo alo")
+    console.log("alo alo")
 }
 
 
@@ -42,7 +42,7 @@ function insertRestaurant(restaurant) {
                                             mealPrice,
                                             avgRating,
                                             Note,
-                                            reporterName) Value(?,?,?,?,?,?,?)`
+                                            reporterName) Values(?,?,?,?,?,?,?)`
         tx.executeSql(query, [restaurant.restaurantName,
             restaurant.restaurantType,
             restaurant.visitDate,
@@ -96,9 +96,61 @@ $('#frm-confirm').submit(function (e) {
     }
     insertRestaurant(restaurant);
     console.log("Done")
-    // $("#frm-confirm").popup("close");
-    // $("#frm-create-restaurant").trigger("reset");
+    $("#frm-confirm").popup("close");
+    $("#frm-create-restaurant").trigger("reset");
 });
-$(document).on("vclick", "#btn-edit", function(){
+$(document).on("vclick", "#btn-edit", function () {
     $("#frm-confirm").popup("close");
 });
+
+
+//View Restaurant
+$(document).on("pageshow", "#view_restaurant", listRestaurant);
+
+function listRestaurant() {
+    onDeviceReady()
+    db.transaction(function (tx) {
+        var query = "SELECT * FROM Restaurant";
+        tx.executeSql(query, [], listRestaurantSuccess, errorCB);
+    })
+}
+
+function listRestaurantSuccess(tx, result) {
+    $("#view_restaurant #lv-account-list").empty();
+
+    var newList = "<ul data-role='listview' id='lv-restaurant-list'>";
+
+    $.each(result.rows, function (i, item) {
+        newList += "<li class='ui-content'><a href='view_restaurant_detail' data-details='" + JSON.stringify(item) + "'>" +
+            "    <h3 class='ui-li-heading'>" + item.restaurantName + "</h3>" +
+            "    <p class='ui-li-desc'>Restaurant Type: " + item.restaurantType + "</p>" +
+            "</a></li>";
+    });
+
+    newList += "</ul>";
+
+    $("#view_restaurant #lv-restaurant-list").append(newList).listview("refresh").trigger("create");
+}
+
+$(document).on("vclick", "#page-view-restaurant #lv-restaurant-list li a", function() {
+    var restaurant = $(this).data("details");
+
+    listRestaurantDetail(restaurant);
+});
+function listRestaurantDetail(restaurant) {
+    console.log(restaurant.Id)
+    // $("#view_restaurant_detail #info").empty();
+    // $("#page-view-account-detail #quote").empty();
+    // $("#page-view-account-detail #btn-add-quotes").empty();
+    //
+    // $("#page-view-account-detail #restaurantName").append("<h1>" + restaurant.restaurantName + "</h1>");
+    // $("#page-view-account-detail #restaurantType").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
+    // $("#page-view-account-detail #info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
+    // $("#page-view-account-detail #info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
+    // $("#page-view-account-detail #info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
+    // $("#page-view-account-detail #info").append("<p>Note: " + restaurant.Note + "</p>");
+    // $("#page-view-account-detail #info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
+
+
+    // viewQuote(account.Id);
+}

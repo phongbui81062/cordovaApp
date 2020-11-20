@@ -12,12 +12,14 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div id="PageHome" data-role="page">
+        <div id="view_restaurant" data-role="page">
             <div id="header" data-role="header">
                 <h1>View Restaurant</h1>
             </div>
             <div id="body" data-role="body">
-                <h1>this is view</h1>
+                <div data-role="main" class="ui-content">
+                    <ul data-role="listview" id="lv-restaurant-list"></ul>
+                </div>
             </div>
             <div id="footer" data-role="footer" data-position="fixed">
                 <nav data-role="navbar">
