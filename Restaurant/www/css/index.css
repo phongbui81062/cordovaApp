@@ -90,3 +90,10 @@ input[type=datetime], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+select{
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

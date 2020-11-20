@@ -11,6 +11,7 @@
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="css/index.css">
+
     <title>Hello World</title>
 </head>
 
@@ -21,16 +22,34 @@
         </div>
         <div id="body" data-role="body">
             <form id="frm-create-restaurant">
-                <input type="text" id="txt-restaurant-name" placeholder="Restaurant Name" required>
-                <input type="text" id="txt-restaurant-type" placeholder="Restaurant Type" required>
-                <input type="datetime" id="datetime-visit-time" placeholder="Visit Time" required>
-                <input type="number" id="txt-meal-price" placeholder="Average Meal Per Person" required>
-                <input type="text" id="txt-service-rating" placeholder="Service Rating" required>
-                <input type="text" id="txt-cleanliness-rating" placeholder="Cleanliness Rating" required>
-                <input type="text" id="txt-food-rating" placeholder="Food Quality Rating" required>
+                <input type="text" id="txt-restaurant-name" placeholder="Restaurant Name" >
+                <input type="text" id="txt-restaurant-type" placeholder="Restaurant Type" >
+                <input type="datetime-local" id="datetime-visit-time" placeholder="Visit Time" >
+                <input type="number" id="txt-meal-price" placeholder="Average Meal Per Person" >
+                <select name="service-rating" id="txt-service-rating">
+                    <option value="1" selected='selected'>Okay</option>
+                    <option value="2">Good</option>
+                    <option value="3">Excellent</option>
+                    <option value="4">Very Good</option>
+                    <option value="5">Perfect</option>
+                </select>
+                <select name="cleanliness-rating" id="txt-cleanliness-rating">
+                    <option value="1" selected='selected'>Okay</option>
+                    <option value="2">Good</option>
+                    <option value="3">Excellent</option>
+                    <option value="4">Very Good</option>
+                    <option value="5">Perfect</option>
+                </select>
+                <select name="food-rating" id="txt-food-rating">
+                    <option value="1" selected='selected'>Okay</option>
+                    <option value="2">Good</option>
+                    <option value="3">Excellent</option>
+                    <option value="4">Very Good</option>
+                    <option value="5">Perfect</option>
+                </select>
                 <input type="text" id="txt-Notes" placeholder="Notes">
-                <input type="text" id="txt-reporter" placeholder="Name of the reporter" required>
-                <input type="submit" value="Create Account">
+                <input type="text" id="txt-reporter" placeholder="Name of the reporter" >
+                <input type="submit" value="Create Account" id="showConfirm">
             </form>
         </div>
         <div id="footer" data-role="footer" data-position="fixed">
