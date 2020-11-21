@@ -141,10 +141,10 @@ function listRestaurantDetail(restaurant) {
     console.log($("#info"));
     $("#info").empty();
     $("#info").append("<h1>" + restaurant.restaurantName + "</h1>");
-    // $("#info").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
-    // $("#info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
-    // $("#info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
-    // $("#info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
-    // $("#info").append("<p>Note: " + restaurant.Note + "</p>");
-    // $("#info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
+    $("#info").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
+    $("#info").append("<p>Visited Date: " + restaurant.visitDate + "</p>");
+    $("#info").append("<p>Meal Price Per Person: " + restaurant.mealPrice + "</p>");
+    $("#info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
+    $("#info").append("<p>Note: " + restaurant.Note + "</p>");
+    $("#info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
 }
