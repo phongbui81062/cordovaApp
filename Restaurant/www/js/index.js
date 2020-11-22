@@ -73,8 +73,6 @@ $("#frm-create-restaurant").submit(function (e) {
     $("#frm-confirm #reporter").text(reporterName);
     $("#frm-confirm").popup("open");
 
-    // console.log(restaurant);
-    // return false;
 });
 $('#frm-confirm').submit(function (e) {
     e.preventDefault();
@@ -149,6 +147,7 @@ function listRestaurantDetail(restaurant) {
     $("#info").append("<button id='edit'>Edit</button>");
     $("#info").append("<button id='delete' onclick='deleteRestaurant()'>Delete</button>");
     document.getElementById("delete").addEventListener("click", deleteRestaurant);
+
     function deleteRestaurant() {
         onDeviceReady();
         console.log("alo")
@@ -157,7 +156,46 @@ function listRestaurantDetail(restaurant) {
                 WHERE restaurantId = ${restaurant.restaurantId}`;
             tx.executeSql(query, [], listRestaurantSuccess, errorCB);
         });
-        // $(document).on("pageshow", "#view_restaurant", listRestaurant);
+        alert(`Delete success ${restaurant.restaurantName}`)
         $("#info").empty();
     }
 }
+
+$("#search_restaurants").submit(function (e) {
+    e.preventDefault();
+    searchRestaurant($('#txt-restaurant-name-search').val());
+})
+
+function searchRestaurant(text) {
+    onDeviceReady()
+    db.transaction(function (tx) {
+        var query = `SELECT * FROM Restaurant
+                     WHERE restaurantName like '${text}%'`;
+        console.log(query);
+        tx.executeSql(query, [], listSearchRestaurantSuccess, errorCB);
+
+    })
+}
+
+function listSearchRestaurantSuccess(tx, result) {
+    console.log(result)
+    $("#search_restaurant #lv-restaurant-list").empty();
+
+    var newList = "<ul data-role='listview' id='lv-restaurant-list'>";
+
+    $.each(result.rows, function (i, item) {
+        newList += "<li class='ui-content'><a href='#search_restaurant_detail' data-details='" + JSON.stringify(item) + "'>" +
+            "    <h3 class='ui-li-heading'>" + item.restaurantName + "</h3>" +
+            "    <p class='ui-li-desc'>Restaurant Type: " + item.restaurantType + "</p>" +
+            "</a></li>";
+    });
+
+    newList += "</ul>";
+
+    $("#search_restaurant #lv-restaurant-list").append(newList).listview("refresh").trigger("create");
+}
+
+$(document).on("vclick", "#search_restaurant #lv-restaurant-list li a", function () {
+    var restaurant = $(this).data("details");
+    listRestaurantDetail(restaurant);
+});

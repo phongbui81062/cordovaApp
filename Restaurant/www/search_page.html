@@ -12,20 +12,59 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div id="PageHome" data-role="page">
+        <div id="search_restaurant" data-role="page">
             <div id="header" data-role="header">
-                <h1>Search Restaurant</h1>
+                <h1>View Restaurant</h1>
             </div>
             <div id="body" data-role="body">
-                <h1>this is search_page</h1>
+                <div data-role="main" class="ui-content">
+                    <form id="search_restaurants">
+                        <input type="text" id="txt-restaurant-name-search" placeholder="Restaurant Name" >
+                        <input type="submit" value="Search" id="search">
+                    </form>
+                    <ul data-role="listview" id="lv-restaurant-list"></ul>
+                </div>
             </div>
             <div id="footer" data-role="footer" data-position="fixed">
                 <nav data-role="navbar">
                     <ul>
-                        <li><a href="page-home.html" rel="external" class="ui-btn ui-btn ui-icon-home ui-btn-icon-notext">Home</a></li>
-                        <li><a href="create_page.html" rel="external" class="ui-btn ui-icon-plus ui-btn-icon-notext">Create Account</a></li>
-                        <li><a href="view_page.html" rel="external" class="ui-btn ui-icon-grid ui-btn-icon-notext">View Accounts</a></li>
-                        <li><a href="#" rel="external" class="ui-btn-active ui-state-persist ui-icon-search ui-btn-icon-notext">Search</a></li>
+                        <li><a href="page-home.html" rel="external"
+                               class="ui-btn ui-btn ui-icon-home ui-btn-icon-notext">Home</a></li>
+                        <li><a href="create_page.html" rel="external"
+                               class="ui-btn ui-icon-plus ui-btn-icon-notext">Create Account</a>
+                        </li>
+                        <li><a href="view_page.html" rel="external" class="ui-btn ui-icon-grid ui-btn-icon-notext">View
+                            Accounts</a></li>
+                        <li><a href="search_page.html" rel="external"
+                               class="ui-btn-active ui-icon-search ui-btn-icon-notext">Search</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Restaurant detail       -->
+        <div id="search_restaurant_detail" data-role="page">
+            <div data-role="header" data-position="fixed">
+                <h1>View Restaurant Detail</h1>
+            </div>
+            <div data-role="body">
+
+                <div data-role="main" class="ui-content">
+                    <div id="info"></div>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="page-home.html" rel="external"
+                               class="ui-btn ui-btn ui-icon-home ui-btn-icon-notext">Home</a></li>
+                        <li><a href="create_page.html" rel="external"
+                               class="ui-btn ui-icon-plus ui-btn-icon-notext">Create Account</a>
+                        </li>
+                        <li><a href="view_page.html" rel="external" class="ui-btn ui-icon-grid ui-btn-icon-notext">View
+                            Accounts</a></li>
+                        <li><a href="search_page.html" rel="external"
+                               class="ui-btn-active ui-icon-search ui-btn-icon-notext">Search</a></li>
                     </ul>
                 </nav>
             </div>
