@@ -132,13 +132,12 @@ function listRestaurantSuccess(tx, result) {
     $("#view_restaurant #lv-restaurant-list").append(newList).listview("refresh").trigger("create");
 }
 
-$(document).on("vclick", "#view_restaurant #lv-restaurant-list li a", function() {
+$(document).on("vclick", "#view_restaurant #lv-restaurant-list li a", function () {
     var restaurant = $(this).data("details");
     listRestaurantDetail(restaurant);
 });
+
 function listRestaurantDetail(restaurant) {
-    // console.log(restaurant.restaurantName);
-    console.log($("#info"));
     $("#info").empty();
     $("#info").append("<h1>" + restaurant.restaurantName + "</h1>");
     $("#info").append("<p>Restaurant Type: " + restaurant.restaurantType + "</p>");
@@ -147,4 +146,18 @@ function listRestaurantDetail(restaurant) {
     $("#info").append("<p>Average Rating: " + restaurant.avgRating + "</p>");
     $("#info").append("<p>Note: " + restaurant.Note + "</p>");
     $("#info").append("<p>Name Of Reporter: " + restaurant.reporterName + "</p>");
+    $("#info").append("<button id='edit'>Edit</button>");
+    $("#info").append("<button id='delete' onclick='deleteRestaurant()'>Delete</button>");
+    document.getElementById("delete").addEventListener("click", deleteRestaurant);
+    function deleteRestaurant() {
+        onDeviceReady();
+        console.log("alo")
+        db.transaction(function (tx) {
+            var query = `DELETE FROM Restaurant
+                WHERE restaurantId = ${restaurant.restaurantId}`;
+            tx.executeSql(query, [], listRestaurantSuccess, errorCB);
+        });
+        // $(document).on("pageshow", "#view_restaurant", listRestaurant);
+        $("#info").empty();
+    }
 }
