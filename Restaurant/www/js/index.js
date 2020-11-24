@@ -93,25 +93,16 @@ $('#frm-confirm').submit(function (e) {
         "reporterName": reporterName
     }
     insertRestaurant(restaurant);
-    vibrate()
     console.log("Done")
     $("#frm-confirm").popup("close");
     $("#frm-create-restaurant").trigger("reset");
+    navigator.notification.beep(5);
 });
 $(document).on("vclick", "#btn-edit", function () {
-    playBeep();
     $("#frm-confirm").popup("close");
+    navigator.notification.vibrate(2000);
 });
 
-function playBeep() {
-        navigator.notification.beep(3);
-    }
-
-// Vibrate for 2 seconds
-//
-function vibrate() {
-    navigator.notification.vibrate(2000);
-}
 //View Restaurant
 $(document).on("pageshow", "#view_restaurant", listRestaurant);
 

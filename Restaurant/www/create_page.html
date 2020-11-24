@@ -22,10 +22,10 @@
         </div>
         <div id="body" data-role="body">
             <form id="frm-create-restaurant">
-                <input type="text" id="txt-restaurant-name" placeholder="Restaurant Name" >
-                <input type="text" id="txt-restaurant-type" placeholder="Restaurant Type" >
+                <input type="text" id="txt-restaurant-name" placeholder="Restaurant Name" required>
+                <input type="text" id="txt-restaurant-type" placeholder="Restaurant Type" required>
                 <input type="datetime-local" id="datetime-visit-time" placeholder="Visit Time" >
-                <input type="number" id="txt-meal-price" placeholder="Average Meal Per Person" >
+                <input type="number" id="txt-meal-price" placeholder="Average Meal Per Person" required>
                 <select name="service-rating" id="txt-service-rating">
                     <option value="1" selected='selected'>Okay</option>
                     <option value="2">Good</option>
@@ -48,7 +48,7 @@
                     <option value="5">Perfect</option>
                 </select>
                 <input type="text" id="txt-Notes" placeholder="Notes">
-                <input type="text" id="txt-reporter" placeholder="Name of the reporter" >
+                <input type="text" id="txt-reporter" placeholder="Name of the reporter" required>
                 <input type="submit" value="Create Account" id="showConfirm">
             </form>
             <form data-role="popup" id="frm-confirm">
